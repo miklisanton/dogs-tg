@@ -115,8 +115,11 @@ class TelegramAccount:
         self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
         time.sleep(5)
         self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
+        time.sleep(5)
+        self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
 
-        # self.driver.find_element(By.CSS_SELECTOR, "._root_oar9p_1").click()
+
+    # self.driver.find_element(By.CSS_SELECTOR, "._root_oar9p_1").click()
         # time.sleep(10)
         # self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]").click()
         # time.sleep(3)
