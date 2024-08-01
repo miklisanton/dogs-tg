@@ -1,6 +1,5 @@
 import json
 import os.path
-
 from seleniumwire import webdriver
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.common.keys import Keys
@@ -13,11 +12,6 @@ import logging
 import re
 
 logger = logging.getLogger(__name__)
-
-
-# Define a filter to ignore logs from a specific package
-
-
 
 
 class TelegramAccount:
@@ -107,28 +101,17 @@ class TelegramAccount:
         self.driver.find_element(By.XPATH, "/html/body/div[7]/div/div[2]/button[1]").click()
         time.sleep(5)
         self.driver.switch_to.frame(0)
+        time.sleep(10)
+        self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]").click()
         time.sleep(5)
-        self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]").click()
         time.sleep(5)
-        self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]").click()
         time.sleep(5)
-        self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[8]").click()
         time.sleep(5)
-        self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
-        time.sleep(5)
-        self.driver.find_element(By.CSS_SELECTOR, ".\\_root_oar9p_1").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[8]").click()
 
-
-    # self.driver.find_element(By.CSS_SELECTOR, "._root_oar9p_1").click()
-        # time.sleep(10)
-        # self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]").click()
-        # time.sleep(3)
-        # time.sleep(3)
-        # self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[8]").click()
-        #
-        # self.driver.switch_to.frame(0)
-        # self.driver.find_element(By.CSS_SELECTOR, ".\\_listItem_1wi4k_1:nth-child(2) .\\_root_oar9p_1").click()
-        # print(self.driver.current_url)
         logger.warning(f"Successfully claimed for {self.account_name}")
 
     def close(self):

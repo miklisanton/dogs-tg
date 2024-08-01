@@ -39,7 +39,12 @@ def main():
             regex = re.compile("(ac[0-9]*)")
             account = regex.findall(filename)[0]
             acc = TelegramAccount(account)
-            acc.claim()
+            try:
+                acc.claim()
+            except:
+                logger.critical(f"Failed to claim on {account}")
+                acc.close()
+                continue
             time.sleep(10)
             acc.close()
 
