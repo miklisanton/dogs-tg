@@ -40,8 +40,9 @@ def main():
             account = regex.findall(filename)[0]
             acc = TelegramAccount(account)
             try:
-                acc.claim()
-            except:
+                acc.claim_hot()
+            except Exception as E:
+                print(str(E))
                 logger.critical(f"Failed to claim on {account}")
                 acc.close()
                 continue

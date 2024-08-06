@@ -4,7 +4,7 @@ from seleniumwire import webdriver
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 import pickle
@@ -22,7 +22,7 @@ class TelegramAccount:
         self.account_name = account_name
         os.makedirs("sessions", exist_ok=True)
         options = Options()
-        options.add_argument("--headless=new")
+        #options.add_argument("--headless=new")
 
         # proxy_url = "http://Hx2o10:UcuCR2@45.83.11.10:8000"
         proxy_url = self.get_proxy()
@@ -36,7 +36,7 @@ class TelegramAccount:
                 },
             }
 
-        self.driver = webdriver.Firefox(options=options, seleniumwire_options=seleniumwire_options)
+        self.driver = webdriver.Chrome(options=options, seleniumwire_options=seleniumwire_options)
         self.fetch_account()
 
     def get_proxy(self):
@@ -93,7 +93,7 @@ class TelegramAccount:
             logger.warning(f"No session data for {self.account_name}, log in manually.")
             self.login()
 
-    def claim(self):
+    def claim_dogs(self):
         dogs_url = "https://web.telegram.org/k/#@dogshouse_bot"
         self.driver.get(dogs_url)
         time.sleep(15)
@@ -113,6 +113,26 @@ class TelegramAccount:
         self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div[8]").click()
 
         logger.warning(f"Successfully claimed for {self.account_name}")
+
+    def claim_hot(self):
+        hot_url = "https://web.telegram.org/k/#@herewalletbot"
+        self.driver.get(hot_url)
+        time.sleep(1000)
+        self.driver.find_element(By.CSS_SELECTOR, ".bubbles-group:nth-child(9) .reply-markup-row:nth-child(3) .c-ripple").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "/html/body/div[7]/div/div[2]/button[1]").click()
+        # login
+
+        # login end
+        time.sleep(5)
+        self.driver.switch_to.frame(0)
+        time.sleep(5)
+        self.driver.find_element(By.CSS_SELECTOR, "div:nth-child(2) > div:nth-child(2) > div > svg").click()
+        time.sleep(5)
+        self.driver.find_element(By.CSS_SELECTOR, ".sc-dJDBYC").click()
+
+        logger.warning(f"Successfully claimed for {self.account_name}")
+
 
     def close(self):
         self.driver.quit()
